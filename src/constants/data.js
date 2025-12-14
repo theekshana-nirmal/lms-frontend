@@ -8,9 +8,9 @@ export const NAV_LINKS = [
 ];
 
 export const HERO_CONTENT = {
-  title: "Learn Smarter. Teach Better. All in One Platform.",
+  title: "Learn Smarter. \nTeach Better. \nAll in One Platform.",
   subtitle:
-    "A simple Learning Management System for students and teachers to manage courses, grades, and learning materials in one place.",
+    "A simple Learning Management System\nfor students and teachers to manage courses, grades, and learning materials in one place.",
 };
 
 export const FEATURES_CONTENT = {
