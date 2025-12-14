@@ -2,7 +2,7 @@ import { FEATURES_CONTENT } from "@/constants/data";
 
 const Features = () => {
   return (
-    <div className="flex flex-col md:flex-row max-w-7xl mx-auto gap-8 py-8 md:py-16 px-4 sm:px-8">
+    <div id="features" className="flex flex-col md:flex-row max-w-7xl mx-auto gap-8 py-8 md:py-16 px-4 sm:px-8">
       <div className="flex flex-col flex-1 gap-8 p-4 sm:p-8 md:p-16">
         <h2 className="text-2xl sm:text-3xl md:text-4xl">
           {FEATURES_CONTENT.title}
