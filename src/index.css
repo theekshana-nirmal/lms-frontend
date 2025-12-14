@@ -144,4 +144,17 @@
   textarea {
     @apply border-border outline-ring/50;
   }
+
+  p,
+  li {
+    @apply text-xl text-gray-700 leading-relaxed;
+  }
+
+  h1 {
+    @apply text-7xl font-bold;
+  }
+
+  h2 {
+    @apply text-4xl font-bold;
+  }
 }
