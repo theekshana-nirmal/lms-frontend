@@ -8,7 +8,7 @@ import {
 
 const FAQ = () => {
   return (
-    <div className="flex items-center max-w-7xl mx-auto gap-8 py-8 min-h-screen">
+    <div className="flex items-center max-w-7xl mx-auto gap-8 py-16 border-t border-gray-200">
       <div className="flex flex-col flex-1">
         <img
           src={FAQ_CONTENT.image}

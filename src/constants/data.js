@@ -46,7 +46,7 @@ export const FAQ_CONTENT = {
 export const ABOUT_CONTENT = {
   title: "About",
   description:
-    "This Learning Management System is an educational project created to learn and practice web development concepts.",
+    "This Learning Management System\nis an educational project created to learn and practice web development concepts.",
 };
 
 export const CTA_CONTENT = {
