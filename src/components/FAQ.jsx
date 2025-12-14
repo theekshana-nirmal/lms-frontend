@@ -8,17 +8,18 @@ import {
 
 const FAQ = () => {
   return (
-    <div className="flex items-center max-w-7xl mx-auto gap-8 py-16 border-t border-gray-200">
-      <div className="flex flex-col flex-1">
+    <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-8 py-8 md:py-16 px-4 sm:px-8 border-t border-gray-200">
+      <div className="flex flex-col flex-1 order-2 md:order-1">
         <img
           src={FAQ_CONTENT.image}
           alt="FAQ image"
-          width="640px"
-          className="border border-gray-200 rounded-2xl"
+          className="w-full max-w-[640px] border border-gray-200 rounded-2xl"
         />
       </div>
-      <div className="flex flex-col flex-1 gap-8">
-        <h2>{FAQ_CONTENT.title}</h2>
+      <div className="flex flex-col flex-1 gap-8 order-1 md:order-2">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl">
+          {FAQ_CONTENT.title}
+        </h2>
         <div>
           <Accordion type="single" collapsible className="space-y-2">
             {FAQ_CONTENT.faqs.map((item, index) => (
@@ -27,10 +28,10 @@ const FAQ = () => {
                 key={index}
                 className="border! border-gray-100! rounded-xl p-4"
               >
-                <AccordionTrigger className="text-lg font-semibold">
+                <AccordionTrigger className="text-base sm:text-lg font-semibold">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-lg text-gray-600 pb-4">
+                <AccordionContent className="text-sm sm:text-base md:text-lg text-gray-600 pb-4">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
