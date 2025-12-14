@@ -5,9 +5,9 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full min-h-[calc(100vh-5rem)] text-center whitespace-break-spaces gap-y-8">
+    <div className="flex flex-col justify-center items-center w-full min-h-[calc(100vh-4rem)] text-center whitespace-break-spaces gap-y-8">
       <div className="flex flex-col gap-y-4">
-        <h1 className="text-7xl font-bold">{HERO_CONTENT.title}</h1>
+        <h1>{HERO_CONTENT.title}</h1>
         <p className="text-xl">{HERO_CONTENT.subtitle}</p>
       </div>
       <div className="flex gap-4">
