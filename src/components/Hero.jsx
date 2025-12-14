@@ -5,18 +5,27 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full min-h-[calc(100vh-4rem)] text-center whitespace-break-spaces gap-y-8">
-      <div className="flex flex-col gap-y-4">
-        <h1>{HERO_CONTENT.title}</h1>
-        <p className="text-xl">{HERO_CONTENT.subtitle}</p>
+    <div className="flex flex-col justify-center items-center w-full min-h-[calc(100vh-4rem)] text-center whitespace-break-spaces gap-y-8 px-4 sm:px-8">
+      <div className="flex flex-col gap-y-4 max-w-4xl">
+        <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl">
+          {HERO_CONTENT.title}
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl">
+          {HERO_CONTENT.subtitle}
+        </p>
       </div>
-      <div className="flex gap-4">
-        <Button size="lg" variant="outline" asChild>
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+        <Button
+          size="lg"
+          variant="outline"
+          asChild
+          className="w-full sm:w-auto"
+        >
           <Link to="/login">Login</Link>
         </Button>
-        <Button size="lg" asChild>
+        <Button size="lg" asChild className="w-full sm:w-auto">
           <Link to="/register">
-            Register <ArrowRight />
+            Register <ArrowRight className="ml-2" />
           </Link>
         </Button>
       </div>
