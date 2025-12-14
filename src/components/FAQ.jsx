@@ -13,7 +13,7 @@ const FAQ = () => {
         <img
           src={FAQ_CONTENT.image}
           alt="FAQ image"
-          className="w-full max-w-[640px] border border-gray-200 rounded-2xl"
+          className="w-full max-w-160 border border-gray-200 rounded-2xl"
         />
       </div>
       <div className="flex flex-col flex-1 gap-8 order-1 md:order-2">

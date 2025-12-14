@@ -19,7 +19,7 @@ const Features = () => {
         <img
           src={FEATURES_CONTENT.image}
           alt="Features"
-          className="w-full max-w-[640px] border border-gray-200 rounded-2xl"
+          className="w-full max-w-160 border border-gray-200 rounded-2xl"
         />
       </div>
     </div>
