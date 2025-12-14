@@ -14,7 +14,7 @@ export const HERO_CONTENT = {
 };
 
 export const FEATURES_CONTENT = {
-  title: "All-in-One LMS Features",
+  title: "Features",
   bulletPoints: [
     "Course Creation & Management",
     "Course Enrollment",
