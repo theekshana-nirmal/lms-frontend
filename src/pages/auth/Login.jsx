@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -49,6 +50,12 @@ const Login = () => {
       }
 
       console.log("Login submitted:", data);
+
+      // Save token to localStorage
+      localStorage.setItem("token", data.token);
+
+      // Redirect to dashboard
+      navigate("/dashboard");
     } catch (error) {
       setError(error.message || "An unexpected error occurred");
       return;
