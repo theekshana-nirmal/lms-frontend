@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { Link } from "react-router-dom";
-import NotFoundImage from "@/assets/404_not_found.gif";
+import NotFoundImage from "./../../public/assets/404_not_found.gif";
 
 const NotFoundPage = () => {
   return (

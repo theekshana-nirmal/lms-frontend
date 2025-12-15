@@ -1,5 +1,5 @@
-import featureImage from "../../public/assets/features.png";
-import faqImage from "../../public/assets/faqImage.png";
+import featureImage from "../../../../public/assets/features.png";
+import faqImage from "../../../../public/assets/faq.png";
 
 export const NAV_LINKS = [
   { name: "Features", href: "/#features" },
