@@ -1,4 +1,4 @@
-import { NAV_LINKS } from "@/constants/data";
+import { NAV_LINKS } from "@/config/data";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 

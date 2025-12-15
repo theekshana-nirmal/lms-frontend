@@ -1,4 +1,4 @@
-import { FOOTER_CONTENT } from "@/constants/data";
+import { FOOTER_CONTENT } from "@/config/data";
 
 const Footer = () => {
   return (

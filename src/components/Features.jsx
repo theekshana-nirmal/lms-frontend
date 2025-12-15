@@ -1,4 +1,4 @@
-import { FEATURES_CONTENT } from "@/constants/data";
+import { FEATURES_CONTENT } from "@/config/data";
 
 const Features = () => {
   return (

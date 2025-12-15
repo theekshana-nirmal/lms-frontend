@@ -1,4 +1,4 @@
-import { HERO_CONTENT } from "@/constants/data";
+import { HERO_CONTENT } from "@/config/data";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
