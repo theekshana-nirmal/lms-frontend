@@ -1,4 +1,4 @@
-import { FAQ_CONTENT } from "@/config/data";
+import { FAQ_CONTENT } from "@/features/landing/constants/landingContent";
 import {
   Accordion,
   AccordionContent,

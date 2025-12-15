@@ -5,7 +5,7 @@ import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
-import ScrollToHash from "@/components/layout/ScrollToHash";
+import ScrollToHash from "@/components/common/ScrollToHash";
 
 const LandingPage = () => {
   return (

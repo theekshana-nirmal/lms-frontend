@@ -1,4 +1,4 @@
-import { ABOUT_CONTENT } from "@/config/data";
+import { ABOUT_CONTENT } from "@/features/landing/constants/landingContent";
 
 const About = () => {
   return (

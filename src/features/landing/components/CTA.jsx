@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CTA_CONTENT } from "@/config/data";
+import { CTA_CONTENT } from "@/features/landing/constants/landingContent";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 
