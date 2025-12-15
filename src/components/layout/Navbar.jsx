@@ -11,13 +11,13 @@ const Navbar = () => {
 
       <div className="hidden md:flex gap-4 lg:gap-8">
         {NAV_LINKS.map((link) => (
-          <a
+          <Link
             key={link.name}
-            href={link.href}
+            to={link.href}
             className="hover:text-gray-600 transition-colors cursor-pointer"
           >
             {link.name}
-          </a>
+          </Link>
         ))}
       </div>
 

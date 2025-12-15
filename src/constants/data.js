@@ -2,9 +2,9 @@ import featureImage from "../assets/features.png";
 import faqImage from "../assets/faq.png";
 
 export const NAV_LINKS = [
-  { name: "Features", href: "#features" },
-  { name: "FAQ", href: "#faq" },
-  { name: "About", href: "#about" },
+  { name: "Features", href: "/#features" },
+  { name: "FAQ", href: "/#faq" },
+  { name: "About", href: "/#about" },
 ];
 
 export const HERO_CONTENT = {
