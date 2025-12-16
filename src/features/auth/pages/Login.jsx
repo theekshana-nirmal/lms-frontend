@@ -23,9 +23,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = { email: email, password: password };
     const jsonData = JSON.stringify(formData);
@@ -52,13 +54,17 @@ const Login = () => {
       console.log("Login submitted:", data);
 
       // Save token to localStorage
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("role", data.role);
 
       // Redirect to dashboard
       navigate("/dashboard");
     } catch (error) {
       setError(error.message || "An unexpected error occurred");
       return;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -83,6 +89,7 @@ const Login = () => {
                     id="email"
                     type="email"
                     placeholder="user@example.com"
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
@@ -100,13 +107,14 @@ const Login = () => {
                   <Input
                     id="password"
                     type="password"
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </Field>
                 <Field>
-                  <Button type="submit" className="w-full">
-                    Login
+                  <Button type="submit" className="w-full" disabled={loading}>
+                    {loading ? "Logging in..." : "Login"}
                   </Button>
                   <FieldDescription className="text-center">
                     Don&apos;t have an account?{" "}
