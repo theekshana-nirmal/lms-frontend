@@ -1,4 +1,4 @@
-import { NAV_LINKS } from "@/pages/landingContent";
+import { NAV_LINKS } from "@/data/landingContent";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
