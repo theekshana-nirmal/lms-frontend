@@ -17,6 +17,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { saveAuthData } from "@/utils/storage";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -73,8 +74,7 @@ const Register = () => {
         console.log("Registration successful:", data);
 
         // Save auth data
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("email", formData.email);
+        saveAuthData(data.accessToken, data.email, data.role);
 
         navigate("/dashboard", { replace: true });
       } else {

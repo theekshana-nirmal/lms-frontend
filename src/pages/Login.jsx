@@ -17,6 +17,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { saveAuthData } from "@/utils/storage";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,10 +54,10 @@ const Login = () => {
 
       console.log("Login submitted:", data);
 
-      // Save token to localStorage
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("email", data.email);
-      localStorage.setItem("role", data.role);
+
+      // Save auth data to localStorage
+      saveAuthData(data.accessToken, data.email, data.role);
+
 
       // Redirect to dashboard
       navigate("/dashboard");

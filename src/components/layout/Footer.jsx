@@ -1,4 +1,4 @@
-import { FOOTER_CONTENT } from "@/features/landing/constants/landingContent";
+import { FOOTER_CONTENT } from "@/pages/landingContent";
 
 const Footer = () => {
   return (

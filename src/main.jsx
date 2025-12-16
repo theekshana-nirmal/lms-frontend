@@ -2,12 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from "./features/landing/pages/LandingPage";
-import Login from "./features/auth/pages/Login";
-import Register from "./features/auth/pages/Register";
+import LandingPage from "./pages/LandingPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import NotFoundPage from "./pages/NotFoundPage";
-import Dashboard from "./features/dashboard/pages/Dashboard";
-import ProtectedRoute from "./features/auth/components/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
 const router = createBrowserRouter([
   { path: "/", element: <LandingPage /> },

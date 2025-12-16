@@ -1,4 +1,4 @@
-import { FAQ_CONTENT } from "@/features/landing/constants/landingContent";
+import { FAQ_CONTENT } from "@/pages/landingContent";
 import {
   Accordion,
   AccordionContent,

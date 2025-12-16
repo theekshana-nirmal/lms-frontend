@@ -1,4 +1,4 @@
-import { HERO_CONTENT } from "@/features/landing/constants/landingContent";
+import { HERO_CONTENT } from "@/pages/landingContent";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";

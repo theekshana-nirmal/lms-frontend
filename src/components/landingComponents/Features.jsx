@@ -1,4 +1,4 @@
-import { FEATURES_CONTENT } from "@/features/landing/constants/landingContent";
+import { FEATURES_CONTENT } from "@/pages/landingContent";
 
 const Features = () => {
   return (
