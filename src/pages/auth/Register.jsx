@@ -18,9 +18,12 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { saveAuthData } from "@/utils/storage";
+import { apiPost } from "@/services/api";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,59 +33,49 @@ const Register = () => {
     confirmPassword: "",
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const validateForm = () => {
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return false;
+    }
+    if (!formData.role) {
+      setError("Please select a role");
+      return false;
+    }
+    return true;
+  };
 
   const handleSubmit = async (e) => {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     e.preventDefault();
+    if (!validateForm()) return;
 
-    const validateForm = () => {
-      if (formData.password !== formData.confirmPassword) {
-        alert("Passwords do not match");
-        return false;
-      }
-      if (!formData.role) {
-        alert("Please select a role");
-        return false;
-      }
-      return true;
-    };
-
-    if (!validateForm()) {
-      return;
-    }
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    const API_REGISTER_URL = `${API_BASE_URL}/api/auth/register`;
 
     setIsLoading(true);
+    setError(""); // Clear previous errors
+
+    const requestBody = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      role: formData.role,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword,
+    };
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          role: formData.role,
-          password: formData.password,
-        }),
-      });
+      // Send registration request
+      const response = await apiPost(API_REGISTER_URL, requestBody, false);
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Registration successful:", data);
+      // Save auth data
+      saveAuthData(response.accessToken, response.email, response.role);
 
-        // Save auth data
-        saveAuthData(data.accessToken, data.email, data.role);
-
-        navigate("/dashboard", { replace: true });
-      } else {
-        const error = await response.json();
-        console.error("Registration failed:", error);
-      }
+      // Redirect to dashboard
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       console.error("Registration error:", error);
+      setError(error.message || "Registration failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -102,6 +95,13 @@ const Register = () => {
           <CardContent>
             <form onSubmit={handleSubmit}>
               <FieldGroup>
+                {/* Display error message if exists */}
+                {error && (
+                  <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                    {error}
+                  </div>
+                )}
+
                 <div className="grid grid-cols-2 gap-4">
                   <Field>
                     <FieldLabel htmlFor="firstName">First Name</FieldLabel>

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { saveAuthData } from "@/utils/storage";
+import { apiPost } from "@/services/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,41 +30,27 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(""); // Clear previous errors
 
+    // Prepare form data
     const formData = { email: email, password: password };
-    const jsonData = JSON.stringify(formData);
 
     // Send Data to Backend
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    const API_LOGIN_URL = `${API_BASE_URL}/api/auth/login`;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: jsonData,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      console.log("Login submitted:", data);
-
+      // Send login request
+      const result = await apiPost(API_LOGIN_URL, formData, false);
 
       // Save auth data to localStorage
-      saveAuthData(data.accessToken, data.email, data.role);
-
+      saveAuthData(result.accessToken, result.email, result.role);
 
       // Redirect to dashboard
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     } catch (error) {
+      console.error("Login failed:", error.message);
       setError(error.message || "An unexpected error occurred");
-      return;
     } finally {
       setLoading(false);
     }
@@ -79,11 +66,17 @@ const Login = () => {
             <CardDescription>
               Enter your email below to login to your account
             </CardDescription>
-            {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>
               <FieldGroup>
+                {/* Display error message if exists */}
+                {error && (
+                  <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                    {error}
+                  </div>
+                )}
+
                 <Field>
                   <FieldLabel htmlFor="email">Email</FieldLabel>
                   <Input
