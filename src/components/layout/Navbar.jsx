@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <nav className="max-w-full px-2 sm:px-8 lg:px-16 py-4 flex items-center justify-between border-b border-gray-200 fixed top-0 bg-white w-full z-10">
       <div className="font-bold text-xl text-gray-800">
-        <Link to="/">LMS</Link>
+        <Link to="/#hero">LMS</Link>
       </div>
 
       <div className="hidden md:flex gap-4 lg:gap-8">
@@ -27,6 +27,7 @@ const Navbar = () => {
             key={link.name}
             to={link.href}
             className="hover:text-gray-600 transition-colors cursor-pointer"
+            replace
           >
             {link.name}
           </Link>

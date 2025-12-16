@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full min-h-[calc(100vh-4rem)] text-center whitespace-break-spaces gap-y-8 px-4 sm:px-8 pt-32">
+    <div id="hero" className="flex flex-col justify-center items-center w-full min-h-[calc(100vh-4rem)] text-center whitespace-break-spaces gap-y-8 px-4 sm:px-8 pt-32">
       <div className="flex flex-col gap-y-4 max-w-4xl">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
           {HERO_CONTENT.title}
