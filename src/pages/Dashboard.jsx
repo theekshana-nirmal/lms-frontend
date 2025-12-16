@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import { apiGet } from "@/services/api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -24,21 +25,10 @@ const Dashboard = () => {
   const fetchUserDetails = async (token) => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const email = localStorage.getItem("email");
+    const USER_DETAILS_URL = `${API_BASE_URL}/api/user/${email}`;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/user/${email}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch user details");
-      }
-
-      const data = await response.json();
+      const data = await apiGet(USER_DETAILS_URL);
       console.log("User details fetched:", data.data);
       setUser(data.data);
     } catch (error) {
