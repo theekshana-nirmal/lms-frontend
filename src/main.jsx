@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import NotFoundPage from "./pages/NotFoundPage";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import NotFoundPage from "./pages/common/NotFoundPage";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
