@@ -1,4 +1,4 @@
-import { FAQ_CONTENT } from "@/data/landingContent";
+import { FAQ_CONTENT } from "@/constants/landingContent";
 import {
   Accordion,
   AccordionContent,

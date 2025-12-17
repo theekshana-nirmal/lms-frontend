@@ -1,4 +1,4 @@
-import { ABOUT_CONTENT } from "@/data/landingContent";
+import { ABOUT_CONTENT } from "@/constants/landingContent";
 
 const About = () => {
   return (
