@@ -1,4 +1,4 @@
-// Save user authentication data to localStorage
+// Save user authentication constants to localStorage
 export const saveAuthData = (accessToken, email, role) => {
   localStorage.setItem("accessToken", accessToken);
   localStorage.setItem("email", email);
@@ -6,7 +6,7 @@ export const saveAuthData = (accessToken, email, role) => {
 };
 
 
-// Get user authentication data from localStorage
+// Get user authentication constants from localStorage
 export const getAuthData = () => {
   return {
     accessToken: localStorage.getItem("accessToken"),
@@ -16,7 +16,7 @@ export const getAuthData = () => {
 };
 
 
-// Clear all authentication data
+// Clear all authentication constants
 export const clearAuthData = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("email");
