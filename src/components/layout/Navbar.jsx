@@ -1,18 +1,14 @@
-import { NAV_LINKS } from "@/data/landingContent";
+import { NAV_LINKS } from "@/constants/landingContent";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {clearAuthData, isAuthenticated} from "@/utils/storage.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] =  useState(false);
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    } 
+      setLoggedIn(isAuthenticated());
   }, []);
 
   return (
@@ -37,7 +33,7 @@ const Navbar = () => {
       <div className="flex gap-2 sm:gap-4">
         {loggedIn ? (
             <Button variant="outline" onClick={() => {
-              localStorage.clear();
+              clearAuthData();
               setLoggedIn(false);
               navigate("/login", { replace: true });
             }}>Logout</Button>
