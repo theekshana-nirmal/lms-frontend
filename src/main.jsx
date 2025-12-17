@@ -8,6 +8,7 @@ import Register from "./pages/auth/Register";
 import NotFoundPage from "./pages/common/NotFoundPage";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter([
   { path: "/", element: <LandingPage /> },
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <Toaster position="top-right" richColors />
     <RouterProvider router={router} />
   </StrictMode>
 );
