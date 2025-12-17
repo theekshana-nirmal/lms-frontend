@@ -17,18 +17,17 @@ import { toast } from "sonner";
 const Register = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
     const [formData, setFormData] = useState({
         firstName: "", lastName: "", email: "", role: "", password: "", confirmPassword: "",
     });
 
     const validateForm = () => {
         if (formData.password !== formData.confirmPassword) {
-            setError("Passwords do not match");
+            toast.error("Passwords do not match.");
             return false;
         }
         if (!formData.role) {
-            setError("Please select a role");
+            toast.error("Please select a role (Student or Teacher).");
             return false;
         }
         return true;
@@ -39,7 +38,6 @@ const Register = () => {
         if (!validateForm()) return;
 
         setIsLoading(true);
-        setError(""); // Clear previous errors
 
         try {
             await authService.register(formData);
@@ -47,7 +45,6 @@ const Register = () => {
         } catch (error) {
             const errorMessage = getErrorMessage(error, 'registration');
             toast.error(errorMessage);
-            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
@@ -66,11 +63,6 @@ const Register = () => {
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <FieldGroup>
-                            {/* Display error message if exists */}
-                            {error && (<div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-                                {error}
-                            </div>)}
-
                             <div className="grid grid-cols-2 gap-4">
                                 <Field>
                                     <FieldLabel htmlFor="firstName">First Name</FieldLabel>
