@@ -16,16 +16,4 @@ export const authService = {
         saveAuthData(response.accessToken, response.email, response.role);
         return response;
     },
-
-    // VALIDATE REGISTRATION DATA
-    validateRegistration(formData) {
-        const errors = [];
-        if (formData.password !== formData.confirmPassword) {
-            errors.push("Passwords do not match");
-        }
-        if (!formData.role) {
-            errors.push("Please select a role");
-        }
-        return errors;
-    }
 };
