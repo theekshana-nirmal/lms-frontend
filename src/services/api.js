@@ -1,3 +1,5 @@
+import { clearAuthData } from "@/utils/storage.js";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Refresh the access token
@@ -6,7 +8,7 @@ const refreshAccessToken = async () => {
 
   // Helper to handle the cleanup logic
   const handleAuthFailure = () => {
-    localStorage.clear();
+    clearAuthData();
     window.location.href = "/login";
   };
 
@@ -27,9 +29,9 @@ const refreshAccessToken = async () => {
     const data = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
     return data.accessToken;
+    // eslint-disable-next-line no-unused-vars
   } catch (error) {
     handleAuthFailure();
-    throw error;
   }
 };
 
@@ -56,7 +58,6 @@ const apiCall = async (endpoint, options = {}, retry = true, requiresAuth) => {
 
   if (response.status === 401 && retry && requiresAuth) {
     const newToken = await refreshAccessToken();
-    console.log("Retrying API call with new token");
     return apiCall(
       endpoint,
       {
@@ -79,7 +80,7 @@ export const apiGet = async (endpoint, requiresAuth = true) => {
   const response = await apiCall(
     endpoint,
     { method: "GET", credentials: "include" },
-    requiresAuth, // Retry true or false based on whether authentication is required
+    true, // Enable retry on 401
     requiresAuth
   );
 
