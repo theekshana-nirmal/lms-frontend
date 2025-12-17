@@ -4,6 +4,12 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const refreshAccessToken = async () => {
   const REFRESH_TOKEN_URL = `${API_BASE_URL}/api/auth/refresh-token`;
 
+  // Helper to handle the cleanup logic
+  const handleAuthFailure = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
   try {
     const response = await fetch(REFRESH_TOKEN_URL, {
       method: "POST",
@@ -14,15 +20,15 @@ const refreshAccessToken = async () => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to refresh token");
+      handleAuthFailure();
+      return;
     }
 
     const data = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
     return data.accessToken;
   } catch (error) {
-    localStorage.clear();
-    window.location.href = "/login";
+    handleAuthFailure();
     throw error;
   }
 };
