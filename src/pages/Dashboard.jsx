@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 import { apiGet } from "@/services/api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {API_ENDPOINTS} from "@/services/apiConfig.js";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -23,12 +24,10 @@ const Dashboard = () => {
   }, []);
 
   const fetchUserDetails = async (token) => {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const email = localStorage.getItem("email");
-    const USER_DETAILS_URL = `${API_BASE_URL}/api/user/${email}`;
 
     try {
-      const data = await apiGet(USER_DETAILS_URL);
+      const data = await apiGet(API_ENDPOINTS.getUserByEmail(email));
       console.log("User details fetched:", data.data);
       setUser(data.data);
     } catch (error) {

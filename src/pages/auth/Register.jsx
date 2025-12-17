@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { saveAuthData } from "@/utils/storage";
 import { apiPost } from "@/services/api";
+import {API_ENDPOINTS} from "@/services/apiConfig.js";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -49,9 +50,6 @@ const Register = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-    const API_REGISTER_URL = `${API_BASE_URL}/api/auth/register`;
-
     setIsLoading(true);
     setError(""); // Clear previous errors
 
@@ -66,7 +64,7 @@ const Register = () => {
 
     try {
       // Send registration request
-      const response = await apiPost(API_REGISTER_URL, requestBody, false);
+      const response = await apiPost(API_ENDPOINTS.register, requestBody, false);
 
       // Save auth data
       saveAuthData(response.accessToken, response.email, response.role);

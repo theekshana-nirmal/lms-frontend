@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { saveAuthData } from "@/utils/storage";
 import { apiPost } from "@/services/api";
+import {API_ENDPOINTS} from "@/services/apiConfig.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,13 +36,9 @@ const Login = () => {
     // Prepare form data
     const formData = { email: email, password: password };
 
-    // Send Data to Backend
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-    const API_LOGIN_URL = `${API_BASE_URL}/api/auth/login`;
-
     try {
       // Send login request
-      const result = await apiPost(API_LOGIN_URL, formData, false);
+      const result = await apiPost(API_ENDPOINTS.login, formData, false);
 
       // Save auth data to localStorage
       saveAuthData(result.accessToken, result.email, result.role);
