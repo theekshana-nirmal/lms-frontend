@@ -1,15 +1,12 @@
 import { NAV_LINKS } from "@/constants/landingContent";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import {clearAuthData, isAuthenticated} from "@/utils/storage.js";
+import { useState } from "react";
+import { clearAuthData, isAuthenticated } from "@/utils/storage.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] =  useState(false);
-  useEffect(() => {
-      setLoggedIn(isAuthenticated());
-  }, []);
+  const [loggedIn, setLoggedIn] = useState(isAuthenticated());
 
   return (
     <nav className="max-w-full px-2 sm:px-8 lg:px-16 py-4 flex items-center justify-between border-b border-gray-200 fixed top-0 bg-white w-full z-10">
@@ -32,11 +29,11 @@ const Navbar = () => {
 
       <div className="flex gap-2 sm:gap-4">
         {loggedIn ? (
-            <Button variant="outline" onClick={() => {
-              clearAuthData();
-              setLoggedIn(false);
-              navigate("/login", { replace: true });
-            }}>Logout</Button>
+          <Button variant="outline" onClick={() => {
+            clearAuthData();
+            setLoggedIn(false);
+            navigate("/login", { replace: true });
+          }}>Logout</Button>
         ) : (
           <>
             <Link to="/login">
