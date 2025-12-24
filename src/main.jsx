@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import NotFoundPage from "./pages/common/NotFoundPage";
 import Dashboard from "./pages/Dashboard";
+import Course from "./pages/Course";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { Toaster } from "sonner";
 
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/course/:id",
+    element: (
+      <ProtectedRoute>
+        <Course />
       </ProtectedRoute>
     ),
   },
