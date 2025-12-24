@@ -2,7 +2,7 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { apiGet } from "@/services/api";
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_ENDPOINTS } from "@/services/apiConfig.js";
 import LoadingSpinner from "@/components/common/LoadingSpinner.jsx";
 import { clearAuthData, getAuthData } from "@/utils/storage.js";
@@ -12,8 +12,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 const Dashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [courses, setCourses] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
+    // Fetch User Details
     const fetchUserDetails = useCallback(async (email) => {
         try {
             const response = await apiGet(API_ENDPOINTS.getUserByEmail(email));
@@ -27,13 +29,22 @@ const Dashboard = () => {
         }
     }, [navigate]);
 
+    // Fetch All Courses
+    const fetchCourses = async () => {
+        try {
+            const response = await apiGet(API_ENDPOINTS.getAllCourses);
+            setCourses(response.data);
+        } catch (error) {
+            console.error("Error fetching courses:", error);
+        }
+    };
+
     useEffect(() => {
         // Get User Details
         const authData = getAuthData();
         fetchUserDetails(authData.email);
+        fetchCourses();
     }, [fetchUserDetails]);
-
-
 
     // Show loading state while fetching user details
     if (isLoading) {
@@ -73,43 +84,50 @@ const Dashboard = () => {
                 <h2 className="text-2xl font-semibold mb-4">All Courses</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {/* Example Course Card */}
-                    <Card className="px-4 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer w-full shadow-lg border-border/40">
-                        {/* Course Cover Image */}
-                        <div className="w-full h-48 bg-gray-200 overflow-hidden">
-                            <img
-                                src="https://placehold.co/400x300"
-                                alt="Java Programming Basics"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-
-                        <CardHeader className="p-0">
-                            <CardTitle className="line-clamp-2">Java Programming Basics</CardTitle>
-                            <CardDescription className="line-clamp-2">
-                                Learn the fundamentals of Java programming with hands-on examples.
-                            </CardDescription>
-                        </CardHeader>
-
-                        <CardContent className="p-0">
-                            <div className="flex items-center gap-2">
+                    {courses.length > 0 ? courses.map((course) => (
+                        <Card key={course.id}
+                            className="px-4 overflow-hidden hover:shadow-lg transition-shadow w-full shadow-lg border-border/40">
+                            {/* Course Cover Image */}
+                            <div className="w-full h-48 bg-gray-200 overflow-hidden">
                                 <img
-                                    src="https://placehold.co/100x100"
-                                    alt="Ajantha Dissanayake"
-                                    className="w-10 h-10 rounded-full"
+                                    src={course.coverImageUrl}
+                                    alt={course.courseName}
+                                    className="w-full h-full object-cover"
                                 />
-                                <div className="text-sm">
-                                    <p className="text-sm">Ajantha Dissanayake</p>
-                                    <p className="text-muted-foreground text-xs">Created: Dec 17, 2025</p>
-                                </div>
                             </div>
-                        </CardContent>
 
-                        <CardFooter className="p-0">
-                            <button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-2 rounded-md">
-                                View Course
-                            </button>
-                        </CardFooter>
-                    </Card>
+                            <CardHeader className="p-0">
+                                <CardTitle className="line-clamp-2">{course.courseName}</CardTitle>
+                                <CardDescription className="line-clamp-2">
+                                    {course.description}
+                                </CardDescription>
+                            </CardHeader>
+
+                            <CardContent className="p-0">
+                                <div className="flex items-center gap-2">
+                                    <img
+                                        src={course.createdBy.profilePhotoUrl}
+                                        alt={`${course.createdBy.firstName} ${course.createdBy.lastName}`}
+                                        className="w-10 h-10 rounded-full"
+                                    />
+                                    <div className="text-sm">
+                                        <p className="text-sm">{`${course.createdBy.firstName} ${course.createdBy.lastName}`}</p>
+                                        <p className="text-muted-foreground text-xs">Created: {course.createdDate}</p>
+                                    </div>
+                                </div>
+                            </CardContent>
+
+                            <CardFooter className="p-0">
+                                <Link to={`/course/${course.id}`} className="w-full">
+                                    <button
+                                        className="cursor-pointer w-full bg-primary text-primary-foreground hover:bg-primary/90 py-2 rounded-md">
+                                        View Course
+                                    </button>
+                                </Link>
+                            </CardFooter>
+                        </Card>
+                    )) : <p>No courses available.</p>
+                    }
                 </div>
             </div>
             <Footer />
