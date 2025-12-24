@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import {Button} from "@/components/ui/button";
-import {ArrowLeft, Calendar, User} from "lucide-react";
+import {ArrowLeft} from "lucide-react";
 
 const Course = () => {
     const {id} = useParams();
