@@ -22,16 +22,18 @@ const refreshAccessToken = async () => {
     });
 
     if (!response.ok) {
+      console.error('Token refresh failed with status:', response.status);
       handleAuthFailure();
-      return;
+      return null;
     }
 
     const data = await response.json();
     localStorage.setItem("accessToken", data.accessToken);
     return data.accessToken;
-    // eslint-disable-next-line no-unused-vars
   } catch (error) {
+    console.error('Token refresh failed:', error);
     handleAuthFailure();
+    return null;
   }
 };
 
@@ -104,7 +106,7 @@ export const apiPost = async (endpoint, formData, requiresAuth = true) => {
       },
       body: JSON.stringify(formData),
     },
-    requiresAuth,
+    true, // Always enable retry on 401 for authenticated requests
     requiresAuth
   );
 
