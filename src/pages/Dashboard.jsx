@@ -83,14 +83,14 @@ const Dashboard = () => {
                             />
                         </div>
 
-                        <CardHeader>
+                        <CardHeader className="p-0">
                             <CardTitle className="line-clamp-2">Java Programming Basics</CardTitle>
                             <CardDescription className="line-clamp-2">
                                 Learn the fundamentals of Java programming with hands-on examples.
                             </CardDescription>
                         </CardHeader>
 
-                        <CardContent>
+                        <CardContent className="p-0">
                             <div className="flex items-center gap-2">
                                 <img
                                     src="https://placehold.co/100x100"
@@ -104,7 +104,7 @@ const Dashboard = () => {
                             </div>
                         </CardContent>
 
-                        <CardFooter className="pt-0">
+                        <CardFooter className="p-0">
                             <button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-2 rounded-md">
                                 View Course
                             </button>
