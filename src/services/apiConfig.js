@@ -7,4 +7,8 @@ export const API_ENDPOINTS = {
 
     // User endpoints
     getUserByEmail: (email) => `${API_BASE_URL}/api/user/${email}`,
+
+    // Course endpoints
+    getAllCourses: `${API_BASE_URL}/api/courses`,
+    getCourseById: (id) => `${API_BASE_URL}/api/courses/${id}`,
 };
