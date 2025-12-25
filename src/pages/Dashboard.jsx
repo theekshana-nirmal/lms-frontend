@@ -9,6 +9,26 @@ import { clearAuthData, getAuthData } from "@/utils/storage.js";
 import { getRoleDisplayName } from "@/constants/roles.js";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card.jsx";
 
+/**
+ * @typedef {Object} User
+ * @property {number} id
+ * @property {string} firstName
+ * @property {string} lastName
+ * @property {string} email
+ * @property {string} role
+ * @property {string} profilePhotoUrl
+ */
+
+/**
+ * @typedef {Object} Course
+ * @property {number} id
+ * @property {string} courseName
+ * @property {string} description
+ * @property {string} coverImageUrl
+ * @property {string} createdDate
+ * @property {User} createdBy
+ */
+
 const Dashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
@@ -42,8 +62,8 @@ const Dashboard = () => {
     useEffect(() => {
         // Get User Details
         const authData = getAuthData();
-        fetchUserDetails(authData.email);
-        fetchCourses();
+        void fetchUserDetails(authData.email);
+        void fetchCourses();
     }, [fetchUserDetails]);
 
     // Show loading state while fetching user details
