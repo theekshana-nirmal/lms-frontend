@@ -17,7 +17,7 @@ const Dashboard = () => {
         <div className="min-h-screen flex flex-col mt-20">
             <Navbar />
             <ProfileSection user={user} />
-            <CourseList courses={courses} />
+            <CourseList courses={courses} userRole={user?.role} />
             <Footer />
         </div>
     );
