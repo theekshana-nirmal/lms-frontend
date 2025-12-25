@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_ENDPOINTS } from "@/services/apiConfig.js";
 import LoadingSpinner from "@/components/common/LoadingSpinner.jsx";
-import { clearAuthData, getAuthData } from "@/utils/storage.js";
+import { getAuthData } from "@/utils/storage.js";
 import { getRoleDisplayName } from "@/constants/roles.js";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card.jsx";
 
@@ -41,9 +41,7 @@ const Dashboard = () => {
             const response = await apiGet(API_ENDPOINTS.getUserByEmail(email));
             setUser(response.data);
         } catch (error) {
-            clearAuthData();
             console.error("Error fetching user details:", error);
-            navigate("/login");
         } finally {
             setLoading(false);
         }

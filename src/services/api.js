@@ -58,8 +58,16 @@ const apiCall = async (endpoint, options = {}, retry = true, requiresAuth) => {
     },
   });
 
-  if (response.status === 401 && retry && requiresAuth) {
+  // Handle both 401 (Unauthorized) and 403 (Forbidden) for token refresh
+  // Some backends return 403 for expired tokens instead of 401
+  if ((response.status === 401 || response.status === 403) && retry && requiresAuth) {
     const newToken = await refreshAccessToken();
+
+    // If refresh failed, it already redirected to login, so abort retry
+    if (!newToken) {
+      throw new Error('Authentication failed - token refresh unsuccessful');
+    }
+
     return apiCall(
       endpoint,
       {
