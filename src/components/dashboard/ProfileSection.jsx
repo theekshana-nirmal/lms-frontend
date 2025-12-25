@@ -1,11 +1,6 @@
 import { getRoleDisplayName } from "@/constants/roles";
 
-/**
- * ProfileSection component displays user profile information
- * @param {Object} props
- * @param {Object} props.user - User object containing profile data
- * @returns {JSX.Element}
- */
+// Component to display user profile section
 const ProfileSection = ({ user }) => {
     if (!user) {
         return (

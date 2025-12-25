@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-/**
- * CourseCard component displays individual course information
- * @param {Object} props
- * @param {Object} props.course - Course object with details
- * @returns {JSX.Element}
- */
+// CourseCard component to display individual course details
 const CourseCard = ({ course }) => {
     return (
         <Card className="px-4 overflow-hidden hover:shadow-lg transition-shadow w-full shadow-lg border-border/40">

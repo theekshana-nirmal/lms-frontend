@@ -1,11 +1,6 @@
 import CourseCard from "./CourseCard";
 
-/**
- * CourseList component displays a grid of courses
- * @param {Object} props
- * @param {Array} props.courses - Array of course objects
- * @returns {JSX.Element}
- */
+// Component to display a list of courses in a grid layout
 const CourseList = ({ courses }) => {
     return (
         <div className="container mx-auto px-4 py-8 grow">

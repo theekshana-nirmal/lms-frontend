@@ -5,11 +5,6 @@ import ProfileSection from "@/components/dashboard/ProfileSection";
 import CourseList from "@/components/dashboard/CourseList";
 import { useDashboard } from "@/hooks/useDashboard";
 
-/**
- * Dashboard page component - Clean and focused on UI composition
- * Business logic is handled by the useDashboard hook
- * UI components are modular and reusable
- */
 const Dashboard = () => {
     const { user, courses, isLoading } = useDashboard();
 
