@@ -11,3 +11,14 @@ export const getAllCourses = async () => {
         throw error;
     }
 };
+
+// FETCH COURSES BY TEACHER ID
+export const getCoursesByTeacher = async (teacherId) => {
+    try {
+        const response = await apiGet(API_ENDPOINTS.getCoursesByTeacher(teacherId));
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching teacher courses:", error);
+        throw error;
+    }
+};
