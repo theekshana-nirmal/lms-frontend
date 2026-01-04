@@ -20,6 +20,7 @@ const Dashboard = () => {
             <CourseList
                 courses={courses}
                 userRole={user?.role}
+                currentUserId={user?.id}
                 onCoursesRefetch={refetchCourses}
             />
             <Footer />
