@@ -62,12 +62,19 @@ export const useDashboard = () => {
         void loadDashboardData();
     }, [fetchUserDetails, fetchCourses]);
 
+    // Refetch courses for the current user
+    const refetchCourses = useCallback(() => {
+        if (user) {
+            return fetchCourses(user);
+        }
+    }, [user, fetchCourses]);
+
     return {
         user,
         courses,
         isLoading,
         error,
         refetchUser: fetchUserDetails,
-        refetchCourses: () => fetchCourses(user)
+        refetchCourses,
     };
 };
