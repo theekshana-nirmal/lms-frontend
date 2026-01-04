@@ -6,7 +6,7 @@ import CourseList from "@/components/dashboard/CourseList";
 import { useDashboard } from "@/hooks/useDashboard";
 
 const Dashboard = () => {
-    const { user, courses, isLoading } = useDashboard();
+    const { user, courses, isLoading, refetchCourses } = useDashboard();
 
     // Show loading state while fetching data
     if (isLoading) {
@@ -17,7 +17,11 @@ const Dashboard = () => {
         <div className="min-h-screen flex flex-col mt-20">
             <Navbar />
             <ProfileSection user={user} />
-            <CourseList courses={courses} userRole={user?.role} />
+            <CourseList
+                courses={courses}
+                userRole={user?.role}
+                onCoursesRefetch={refetchCourses}
+            />
             <Footer />
         </div>
     );
