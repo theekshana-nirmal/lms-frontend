@@ -12,4 +12,5 @@ export const API_ENDPOINTS = {
     getAllCourses: `${API_BASE_URL}/api/courses`,
     getCourseById: (id) => `${API_BASE_URL}/api/courses/${id}`,
     getCoursesByTeacher: (teacherId) => `${API_BASE_URL}/api/courses/teacher/${teacherId}`,
+    createCourse: `${API_BASE_URL}/api/courses/create`,
 };
