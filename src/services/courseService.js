@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from "./api";
+import { apiGet, apiPost, apiPut, apiDelete } from "./api";
 import { API_ENDPOINTS } from "./apiConfig";
 
 // FETCH ALL COURSES
@@ -30,6 +30,28 @@ export const createCourse = async (courseData) => {
         return response.data;
     } catch (error) {
         console.error("Error creating course:", error);
+        throw error;
+    }
+};
+
+// UPDATE COURSE
+export const updateCourse = async (courseId, courseData) => {
+    try {
+        const response = await apiPut(API_ENDPOINTS.updateCourse(courseId), courseData);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating course:", error);
+        throw error;
+    }
+};
+
+// DELETE COURSE
+export const deleteCourse = async (courseId) => {
+    try {
+        const response = await apiDelete(API_ENDPOINTS.deleteCourse(courseId));
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting course:", error);
         throw error;
     }
 };
