@@ -125,3 +125,44 @@ export const apiPost = async (endpoint, formData, requiresAuth = true) => {
 
   return response.json();
 };
+
+// Make PUT request
+export const apiPut = async (endpoint, formData, requiresAuth = true) => {
+  const response = await apiCall(
+    endpoint,
+    {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    },
+    true,
+    requiresAuth
+  );
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Request failed");
+  }
+
+  return response.json();
+};
+
+// Make DELETE request
+export const apiDelete = async (endpoint, requiresAuth = true) => {
+  const response = await apiCall(
+    endpoint,
+    { method: "DELETE", credentials: "include" },
+    true,
+    requiresAuth
+  );
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Request failed");
+  }
+
+  return response.json();
+};
