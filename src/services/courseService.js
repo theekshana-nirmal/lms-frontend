@@ -1,4 +1,4 @@
-import { apiGet } from "./api";
+import { apiGet, apiPost } from "./api";
 import { API_ENDPOINTS } from "./apiConfig";
 
 // FETCH ALL COURSES
@@ -19,6 +19,17 @@ export const getCoursesByTeacher = async (teacherId) => {
         return response.data;
     } catch (error) {
         console.error("Error fetching teacher courses:", error);
+        throw error;
+    }
+};
+
+// CREATE NEW COURSE
+export const createCourse = async (courseData) => {
+    try {
+        const response = await apiPost(API_ENDPOINTS.createCourse, courseData);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating course:", error);
         throw error;
     }
 };
